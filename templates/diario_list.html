@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Diario</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            margin: 30px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .entrada {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .entrada h2 {
+            margin-top: 0;
+        }
+
+        .boton {
+            text-decoration: none;
+            padding: 8px 12px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .editar {
+            background-color: orange;
+        }
+
+        .eliminar {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Mi Diario</h1>
+
+
+    {% for entrada in entradas %}
+
+        <div class="entrada">
+
+            <h2>{{ entrada.titulo }}</h2>
+
+            <p>{{ entrada.contenido }}</p>
+
+            <p>
+                Fecha: {{ entrada.fecha_creacion }}
+            </p>
+
+            <a class="boton" href="{% url 'diario_detail' entrada.pk %}">
+                Ver
+            </a>
+
+            <a class="boton editar" href="{% url 'diario_update' entrada.pk %}">
+                Editar
+            </a>
+
+            <a class="boton eliminar" href="{% url 'diario_delete' entrada.pk %}">
+                Eliminar
+            </a>
+
+        </div>
+
+    {% empty %}
+
+        <p>No hay entradas en el diario.</p>
+
+    {% endfor %}
+
+</body>
+</html>

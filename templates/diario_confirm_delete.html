@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Diario</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            margin: 30px;
+        }
+
+        .confirmacion {
+            background-color: white;
+            padding: 20px;
+            max-width: 500px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .cancelar {
+            text-decoration: none;
+            padding: 9px 15px;
+            background-color: gray;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="confirmacion">
+
+        <h1>Eliminar entrada</h1>
+
+        <p>
+            ¿Seguro que quieres eliminar
+            "{{ object.titulo }}"?
+        </p>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            <button type="submit">
+                Sí, eliminar
+            </button>
+
+            <a class="cancelar"
+               href="{% url 'diario_list' %}">
+                Cancelar
+            </a>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
